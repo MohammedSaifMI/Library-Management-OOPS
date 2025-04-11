@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<String, Book> bookHashMap = new HashMap<>();
+        Map<String, Book> bkHashMap = new HashMap<>();
         Map<String, String> adminData = new HashMap<>();
         Map<String, String> userData = new HashMap<>();
         Map<String, MemberLib> members = new HashMap<>();
@@ -62,11 +62,11 @@ public class Main {
                                             try {
                                                 switch (choice) {
                                                     case 1: {
-                                                        if (bookHashMap.isEmpty())
+                                                        if (bkHashMap.isEmpty())
                                                             System.out.println("\t\t\tNo books are available...");
                                                         else {
                                                             System.out.println("\t\t\tAll books in Library:");
-                                                            for (Book book : bookHashMap.values()) {
+                                                            for (Book book : bkHashMap.values()) {
                                                                 book.displayInfo();
                                                             }
                                                         }
@@ -96,7 +96,7 @@ public class Main {
                                                             System.out.print("Enter the genre of the book: ");
                                                             String genre = scanner.next();
 
-                                                            bookHashMap.put(id, new Book(title, id, author, genre));
+                                                            bkHashMap.put(id, new Book(title, id, author, genre));
                                                         }
                                                         break;
                                                     }
@@ -201,12 +201,12 @@ public class Main {
                                             try {
                                                 switch (choice) {
                                                     case 1:
-                                                        if (bookHashMap.isEmpty())
+                                                        if (bkHashMap.isEmpty())
                                                             System.out.println("No Books Found :(");
                                                         else {
                                                             System.out.println("\t\t\tAll books in Library");
                                                             boolean found = false;
-                                                            for (Map.Entry<String, Book> entry : bookHashMap.entrySet()) {
+                                                            for (Map.Entry<String, Book> entry : bkHashMap.entrySet()) {
                                                                 if (!member.hasPurchasedBook(entry.getKey())) {
                                                                     entry.getValue().displayInfo();
                                                                     found = true;
@@ -223,7 +223,7 @@ public class Main {
                                                         System.out.print("Enter the book Id: ");
                                                         String bookId = scanner.next();
                                                         try {
-                                                            member.purchaseBook(bookId, bookHashMap);
+                                                            member.purchaseBook(bookId, bkHashMap);
                                                             System.out.println("Purchase Successful!");
                                                         } catch (BookNotAvailableExcep e) {
                                                             System.out.println("Invalid BookId......");
