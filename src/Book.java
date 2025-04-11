@@ -7,7 +7,10 @@ class Book extends LibraryStock{
         this.author = author;
         this.genre = genre;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ec7ca6a5b4b35ca7b39eddf42b022a86578ba0d3
     @Override
     public void displayInfo(){
         System.out.println("Id: "+id+",Author: "+author
