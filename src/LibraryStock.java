@@ -7,6 +7,7 @@ abstract class LibraryStock {
         this.title = Title;
         this.id = Id;
         this.isAvailable = false;
+
     }
 
     public String  getId()

@@ -4,20 +4,21 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         Map<String, Book> bookHashMap = new HashMap<>();
         Map<String, String> adminData = new HashMap<>();
         Map<String, String> userData = new HashMap<>();
         Map<String, MemberLib> members = new HashMap<>();
 
         System.out.println("\t\t\t********** Welcome to Library **********");
-        int choice1=-1;
+        int choice1 = -1;
         do {
             try {
-            System.out.println("1. Admin");
-            System.out.println("2. User");
-            System.out.println("3. Exit");
-            System.out.println("Enter your choice: ");
-            choice1 = scanner.nextInt();
+                System.out.println("1. Admin");
+                System.out.println("2. User");
+                System.out.println("3. Exit");
+                System.out.println("Enter your choice: ");
+                choice1 = scanner.nextInt();
 
                 switch (choice1) {
                     case 1: {
@@ -292,6 +293,7 @@ public class Main {
                 System.out.println("Invalid choice...Enter a valid choice");
                 scanner.nextLine();
             }
-        } while (choice1 != 3);
+        }
+        while (choice1 != 3) ;
     }
 }

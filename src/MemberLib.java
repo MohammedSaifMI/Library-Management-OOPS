@@ -3,12 +3,12 @@ import java.util.*;
 class MemberLib {
     private String memId;
     private String memName;
-    private List<BorrowedBook> purchasedBooks;
+    private Set<BorrowedBook> purchasedBooks;
 
     public MemberLib(String  memId, String memName) {
         this.memId = memId;
         this.memName = memName;
-        this.purchasedBooks= new ArrayList<>();
+        this.purchasedBooks= new HashSet<>();
     }
 
 
