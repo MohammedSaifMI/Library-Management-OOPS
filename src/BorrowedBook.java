@@ -1,14 +1,17 @@
 import java.time.LocalDate;
+import java.util.logging.Logger;
+
 public class BorrowedBook {
+    private static final Logger logger = Logger.getLogger(BorrowedBook.class.getName());
+
     private Book book;
     private LocalDate issueDate;
     private LocalDate returnDate;
 
     public BorrowedBook(Book book, LocalDate issueDate, LocalDate returnDate) {
-        this.book =book;
-        this.issueDate =issueDate;
-        this.returnDate=returnDate;
-
+        this.book = book;
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
     }
 
     public Book getBook() {
@@ -24,7 +27,15 @@ public class BorrowedBook {
     }
 
     public void displayBorrowedBook() {
-        System.out.println("Borrowed book is: "+book.getTitle()+" IssueDate: "+
-                issueDate+" ReturnDate: "+returnDate);
+        logger.info(toString());
+    }
+
+    @Override
+    public String toString() {
+        return "BorrowedBook{" +
+                "book=" + book.getTitle() +
+                ", issueDate=" + issueDate +
+                ", returnDate=" + returnDate +
+                '}';
     }
 }
