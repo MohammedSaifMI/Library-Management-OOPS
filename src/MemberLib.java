@@ -15,22 +15,28 @@ class MemberLib {
         this.purchasedBooks = new HashSet<>();
     }
 
-    public void purchaseBook(String bookId, Map<String, Book> bookHashMap) throws BookNotAvailableExcep {
-        Book book = bookHashMap.get(bookId);
+    public void purchaseBook(String bookId, Set<Book> bookSet) throws BookNotAvailableExcep {
+        Book foundBook=null;
 
-        if (book == null) {
+        for (Book book : bookSet) {
+            if (book.getId().equalsIgnoreCase(bookId)) {
+                foundBook = book;
+                break;
+            }
+        }
+        if (foundBook == null) {
             throw new BookNotAvailableExcep("BookId: " + bookId + " does not exist.");
-        } else if (book.isAvailable()) {
-            throw new BookNotAvailableExcep("Book \"" + book.getTitle() + "\" is not available.");
+        } else if (!foundBook.isAvailable()) {
+            throw new BookNotAvailableExcep("Book \"" + foundBook.getTitle() + "\" is not available.");
         }
 
-        book.setAvailable(false);
+        foundBook.setAvailable(true);
 
         LocalDate issueDate = LocalDate.now();
         LocalDate returnDate = issueDate.plusDays(14);
 
-        purchasedBooks.add(new BorrowedBook(book, issueDate, returnDate));
-        logger.info(memName + " purchased book: " + book.getTitle());
+        purchasedBooks.add(new BorrowedBook(foundBook, issueDate, returnDate));
+        logger.info(memName + " purchased book: " + foundBook.getTitle());
     }
 
     public void displayPurchasedBook() {

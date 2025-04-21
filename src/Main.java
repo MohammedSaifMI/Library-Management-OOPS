@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Logger logger = Logger.getLogger(Main.class.getName());
 
-        Map<String, Book> bkHashMap = new HashMap<>();
+        Set<Book> bkSet = new HashSet<>();
         Map<String, String> adminData = new HashMap<>();
         Map<String, String> userData = new HashMap<>();
         Map<String, MemberLib> members = new HashMap<>();
@@ -51,11 +51,11 @@ public class Main {
                                             try {
                                                 switch (choice) {
                                                     case 1: {
-                                                        if (bkHashMap.isEmpty())
+                                                        if (bkSet.isEmpty())
                                                             logger.info("\t\t\tNo books are available...");
                                                         else {
                                                             logger.info("\t\t\tAll books in Library:");
-                                                            for (Book book : bkHashMap.values()) {
+                                                            for (Book book : bkSet) {
                                                                 book.displayInfo();
                                                             }
                                                         }
@@ -84,8 +84,9 @@ public class Main {
                                                             String author = scanner.next();
                                                             logger.info("Enter the genre of the book: ");
                                                             String genre = scanner.next();
-
-                                                            bkHashMap.put(id, new Book(title, id, author, genre));
+                                                            Book newBook= new Book(title,id,author,genre);
+                                                            newBook.isAvailable = true;
+                                                            bkSet.add(newBook);
                                                         }
                                                         break;
                                                     }
@@ -179,14 +180,14 @@ public class Main {
                                             try {
                                                 switch (choice) {
                                                     case 1:
-                                                        if (bkHashMap.isEmpty())
+                                                        if (bkSet.isEmpty())
                                                             logger.warning("No Books Found :(");
                                                         else {
                                                             logger.info("\t\t\tAll books in Library");
                                                             boolean found = false;
-                                                            for (Map.Entry<String, Book> entry : bkHashMap.entrySet()) {
-                                                                if (!member.hasPurchasedBook(entry.getKey())) {
-                                                                    entry.getValue().displayInfo();
+                                                            for (Book book : bkSet) {
+                                                                if (!member.hasPurchasedBook(book.getId())) {
+                                                                    book.displayInfo();
                                                                     found = true;
                                                                 }
                                                             }
@@ -201,7 +202,7 @@ public class Main {
                                                         logger.info("Enter the book Id: ");
                                                         String bookId = scanner.next();
                                                         try {
-                                                            member.purchaseBook(bookId, bkHashMap);
+                                                            member.purchaseBook(bookId, bkSet);
                                                             logger.info("Purchase Successful!");
                                                         } catch (BookNotAvailableExcep e) {
                                                             logger.warning("Invalid BookId......");

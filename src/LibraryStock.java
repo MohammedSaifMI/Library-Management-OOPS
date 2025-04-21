@@ -20,7 +20,7 @@ abstract class LibraryStock {
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.isAvailable = available;
     }
 
     public String getTitle(){
